@@ -48,8 +48,8 @@ let resultElement = document.getElementById('result');
     // Assegno 0 come valore al punteggio
     let score = 0;
 
-    // Assegno
-    resultElement.innerText = 'In attesa del risultato';
+    // Stampo un messaggio predefinito al risultato in attesa dello score
+    resultElement.innerText = 'In attesa del risultato...';
 
     // Numero totale delle bombe
     let totalBombs = 16;
