@@ -23,7 +23,7 @@ const form = document.querySelector('form');
 const grid = document.getElementById('grid');
 const select = document.querySelector('select');
 const button = document.querySelector('button');
-const score = document.getElementById('score');
+const scoreElement = document.getElementById('score');
 
 // Aggiungo un evento al bottone Play
  const startGame = (e) => {
@@ -33,14 +33,14 @@ const score = document.getElementById('score');
     // Al click del pulsante play/try again viene svuotata la griglia
     grid.innerHTML = '';
 
-    // Rendo visibile i Punti
-    score.classList.remove('d-none');
-
     // Una volta premuto il pulsante play compare al suo interno la scritta try again
     button.innerText = 'Try again';
 
     // Selettore difficoltà
     const difficulty = select.value;
+
+    // Assegno 0 come valore al punteggio
+    let score = 0;
 
     // Dati della griglia
     let rows = 10;
@@ -67,10 +67,18 @@ const score = document.getElementById('score');
 
         // Aggiungo la classe per cambiare colore delle celle al click della cella
         cell.addEventListener('click', () => {
-        cell.classList.add('clicked');
 
-        // Vedo in console quale cella ha cliccato l'utente
-        console.log(i + 1);
+            // Se le celle hanno già la classe clicked, il punteggio non vieve aumentato
+            if (cell.classList.contains('clicked')) return;
+
+            // Aggiungo la classe clicked alle celle clickate
+            cell.classList.add('clicked');
+
+            // Aggiungo i punti al giocatore
+            scoreElement.innerText = 'Punti: ' + ++score;
+
+            // Vedo in console quale cella ha cliccato l'utente
+            console.log(i + 1);
         })
 
     // Inserisco in pagina
