@@ -11,6 +11,12 @@ header h1 {
     flex-grow: 1;
 }
 
+/* FORM */
+
+select {
+    cursor: pointer;
+}
+
 form {
     justify-content: end;
     align-items: center;
@@ -21,39 +27,53 @@ body {
     background-color: #7FFFD4;
 }
 
+/* SCOREBOARD */
+#scoreboard {
+    width: 100%;
+    justify-content: center;
+}
+
+#score {
+    flex-basis: 25%;
+    font-size: 2rem;
+    padding: 10px 20px;
+    background-color: black;
+    border: 3px solid white;
+    border-radius: 40px;
+}
+
 /* GRID */
 #grid {
     height: 800px;
     width: 800px;
-    margin: 80px auto;
+    margin: 40px auto;
     background-color: #fff;
     border: 5px solid black;
 }
 
-.cell-l {
-    height: calc(100% / 10);
-    flex-basis: calc(100% / 10);
+.cell {
     border: 2px solid black;
     cursor: pointer;
 }
 
-.cell-m {
+.cell.easy {
+    height: calc(100% / 10);
+    flex-basis: calc(100% / 10);  
+}
+
+.cell.medium {
     height: calc(100% / 9);
     flex-basis: calc(100% / 9);
-    border: 2px solid black;
-    cursor: pointer;
 }
 
-.cell-s {
+.cell.hard {
     height: calc(100% / 7);
     flex-basis: calc(100% / 7);
-    border: 2px solid black;
-    cursor: pointer;
 }
 
-div .cell-s,
-div .cell-m,
-div .cell-l {
+div .cell.easy,
+div .cell.medium,
+div .cell.hard {
     display: flex;
     justify-content: center;
     align-items: center;

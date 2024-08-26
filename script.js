@@ -10,49 +10,43 @@ console.log('JS OK');
 
 
 // FUNZIONI
-// Creo una funzione per creare le celle della griglia con il contenuto (100 celle)
-const create100Cells = content => {
+// Creo una funzione per creare le celle
+const createCells = (cellNumber, difficulty) => {
     const cell = document.createElement('div');
-    cell.classList.add('cell-l');
-    cell.append(content);
+    cell.classList.add('cell', difficulty);
+    cell.append(cellNumber);
     return cell;
 }
-// 81 celle
-const create81Cells = content => {
-    const cell = document.createElement('div');
-    cell.classList.add('cell-m');
-    cell.append(content);
-    return cell;
-}
-
-// 49 celle
-const create49Cells = content => {
-    const cell = document.createElement('div');
-    cell.classList.add('cell-s');
-    cell.append(content);
-    return cell;
-}
-
-
 
 //Recupero elementi dal DOM
 const form = document.querySelector('form');
 const grid = document.getElementById('grid');
 const select = document.querySelector('select');
 const button = document.querySelector('button');
+const score = document.getElementById('score');
 
-// Selettore difficoltà
-const difficulty = select.value;
+// Aggiungo un evento al bottone Play
+ const startGame = (e) => {
+    // Modifico il normale funzionamento del bottone dentro il form
+    e.preventDefault();
 
-// Dati della griglia
-let rows = 10;
-let cols = 10;
-const totalCells = rows * cols;
-console.log(totalCells);
+    // Al click del pulsante play/try again viene svuotata la griglia
+    grid.innerHTML = '';
 
-// Controllo in che valore del selected è l'utente
-select.addEventListener('change', () => {
-    
+    // Rendo visibile i Punti
+    score.classList.remove('d-none');
+
+    // Una volta premuto il pulsante play compare al suo interno la scritta try again
+    button.innerText = 'Try again';
+
+    // Selettore difficoltà
+    const difficulty = select.value;
+
+    // Dati della griglia
+    let rows = 10;
+    let cols = 10;
+
+    // Controllo in che valore del selected è l'utente    
     if (difficulty === 'medium') {
         rows = 9;
         cols = 9;
@@ -60,37 +54,31 @@ select.addEventListener('change', () => {
         rows = 7;
         cols = 7;
     }
-})
 
-totalCells;
-console.log(totalCells);
-
-// Aggiungo un evento al bottone Play
-button.addEventListener('click', function(e) {
-    // Modifico il normale funzionamento del bottone dentro il form
-    e.preventDefault();
-
-    // Al click del pulsante play si vedrà la griglia selezionata
-    grid.classList.toggle('d-none');
+    // Calcolo le celle totali
+    const totalCells = rows * cols;
+    console.log(totalCells);
     
-})
-
-// Ciclo for che calcola quante celle creare (100 o 81 o 49)
-for (let i = 0; i < totalCells; i++) {
+    // Ciclo for che calcola quante celle creare (100 o 81 o 49)
+    for (let i = 0; i < totalCells; i++) {
     
-    // Creo le celle
-    let cell = create100Cells(i + 1);
+        // Creo le celle
+        const cell = createCells(i + 1, difficulty);
 
-    // Aggiungo la classe per cambiare colore delle celle al click della cella
-    cell.addEventListener('click', () => {
+        // Aggiungo la classe per cambiare colore delle celle al click della cella
+        cell.addEventListener('click', () => {
         cell.classList.add('clicked');
 
         // Vedo in console quale cella ha cliccato l'utente
-        console.log(cell.innerText);
-    })
+        console.log(i + 1);
+        })
 
     // Inserisco in pagina
     grid.appendChild(cell);
+    }
 }
+
+form.addEventListener('submit', startGame);
+
 
 
