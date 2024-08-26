@@ -88,6 +88,17 @@ div .cell.bomb {
     font-size: 1.3rem;
 }
 
+/* RESULT */
+#result {
+    max-width: 60%;
+    font-size: 2rem;
+    padding: 10px 20px;
+    background-color: black;
+    border: 3px solid white;
+    border-radius: 40px;
+    
+}
+
 .clicked {
     background-color: rgb(138, 237, 255);
 }

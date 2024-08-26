@@ -29,6 +29,7 @@ const grid = document.getElementById('grid');
 const select = document.querySelector('select');
 const button = document.querySelector('button');
 const scoreElement = document.getElementById('score');
+let resultElement = document.getElementById('result');
 
 // Aggiungo un evento al bottone Play
  const startGame = (e) => {
@@ -46,6 +47,9 @@ const scoreElement = document.getElementById('score');
 
     // Assegno 0 come valore al punteggio
     let score = 0;
+
+    // Assegno
+    resultElement.innerText = 'In attesa del risultato';
 
     // Numero totale delle bombe
     let totalBombs = 16;
@@ -67,6 +71,9 @@ const scoreElement = document.getElementById('score');
     const totalCells = rows * cols;
     console.log(totalCells);
 
+    // Calcolo del punteggio massimo
+    const maxScore = totalCells - totalBombs;
+
     // Creo le bombe
     const bombs = createRandomNumbers(totalCells, totalBombs);
     console.log(bombs);
@@ -87,7 +94,7 @@ const scoreElement = document.getElementById('score');
             if (bombs.includes(i + 1)) {
                 // Aggiungo la classe bomb
                 cell.classList.add('bomb');
-                console.log('BOOM! You loose!');
+                resultElement.innerText = `Hai Perso! hai totalizzato ${score} punti!`;
             } else {
                 // Aggiungo la classe clicked alle celle clickate
                 cell.classList.add('clicked');
@@ -95,8 +102,9 @@ const scoreElement = document.getElementById('score');
                 // Aggiungo i punti al giocatore
                 scoreElement.innerText = 'Punti: ' + ++score;
 
-                // Vedo in console quale cella ha cliccato l'utente
-                console.log(i + 1);
+                if (score === maxScore) {
+                    resultElement.innerText = `Hai Vinto! hai totalizzato ${score} punti!`;
+                }
             }
         })
 
