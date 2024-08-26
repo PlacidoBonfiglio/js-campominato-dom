@@ -1,14 +1,3 @@
-console.log('JS OK');
-
-// Recuperare elementi dal DOM
-// Creare funzione per creare le celle
-// Reagire al click sul pulsante play che fa vedere la griglia
-// In ogni cella devono comparire i numeri in ordine da 1 a 100;
-// Reagire al click dell'utente che fa apparire il numero cliccato in console
-// Reagire al click dell'utente che fa cambiare il colore delle celle
-
-
-
 // FUNZIONI
 // Creo una funzione per creare le celle
 const createCells = (cellNumber, difficulty) => {
@@ -18,7 +7,23 @@ const createCells = (cellNumber, difficulty) => {
     return cell;
 }
 
-//Recupero elementi dal DOM
+// Creo funzione che genera numeri casuali (bombe)
+const createRandomNumbers = (max, totalNumbers) => {
+    const randomNumbers = [];
+
+    // Ciclo while poiché dovrò pescare più volte il numero casuale per non avere doppioni
+    while (randomNumbers.length < totalNumbers) {
+        const randomNumber = Math.floor(Math.random() * max) + 1;
+
+        // Controllo se il numero creato è già nell'array. Se si, genero altri numeri
+        if (!randomNumbers.includes(randomNumber)) {
+            randomNumbers.push(randomNumber);
+        }
+    }
+    return randomNumbers;
+}
+
+// RECUPERO ELEMENTI DAL DOM
 const form = document.querySelector('form');
 const grid = document.getElementById('grid');
 const select = document.querySelector('select');
@@ -42,6 +47,9 @@ const scoreElement = document.getElementById('score');
     // Assegno 0 come valore al punteggio
     let score = 0;
 
+    // Numero totale delle bombe
+    let totalBombs = 16;
+
     // Dati della griglia
     let rows = 10;
     let cols = 10;
@@ -58,6 +66,10 @@ const scoreElement = document.getElementById('score');
     // Calcolo le celle totali
     const totalCells = rows * cols;
     console.log(totalCells);
+
+    // Creo le bombe
+    const bombs = createRandomNumbers(totalCells, totalBombs);
+    console.log(bombs);
     
     // Ciclo for che calcola quante celle creare (100 o 81 o 49)
     for (let i = 0; i < totalCells; i++) {
@@ -87,6 +99,3 @@ const scoreElement = document.getElementById('score');
 }
 
 form.addEventListener('submit', startGame);
-
-
-
