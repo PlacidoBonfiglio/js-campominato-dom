@@ -1,0 +1,66 @@
+/* HEADER */
+.navbar {
+    height: 100px;
+}
+
+header img {
+    height: 60px;
+}
+
+header h1 {
+    flex-grow: 1;
+}
+
+form {
+    justify-content: end;
+    align-items: center;
+}
+
+/* BODY */
+body {
+    background-color: #7FFFD4;
+}
+
+/* GRID */
+#grid {
+    height: 800px;
+    width: 800px;
+    margin: 80px auto;
+    background-color: #fff;
+    border: 5px solid black;
+}
+
+.cell-l {
+    height: calc(100% / 10);
+    flex-basis: calc(100% / 10);
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+.cell-m {
+    height: calc(100% / 9);
+    flex-basis: calc(100% / 9);
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+.cell-s {
+    height: calc(100% / 7);
+    flex-basis: calc(100% / 7);
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+div .cell-s,
+div .cell-m,
+div .cell-l {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.clicked {
+    background-color: rgb(138, 237, 255);
+}
