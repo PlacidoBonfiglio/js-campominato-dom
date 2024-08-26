@@ -74,7 +74,7 @@ body {
 .cell.bomb {
     color: white;
     background-color: red;
-    border: 5px solid rgb(173, 0, 0);
+    border: 5px solid rgb(255, 206, 73);
 }
 
 div .cell.easy,

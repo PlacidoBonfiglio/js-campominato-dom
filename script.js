@@ -83,14 +83,21 @@ const scoreElement = document.getElementById('score');
             // Se le celle hanno già la classe clicked, il punteggio non vieve aumentato
             if (cell.classList.contains('clicked')) return;
 
-            // Aggiungo la classe clicked alle celle clickate
-            cell.classList.add('clicked');
+            // Controllo se l'utente ha beccato la cella con la bomba
+            if (bombs.includes(i + 1)) {
+                // Aggiungo la classe bomb
+                cell.classList.add('bomb');
+                console.log('BOOM! You loose!');
+            } else {
+                // Aggiungo la classe clicked alle celle clickate
+                cell.classList.add('clicked');
 
-            // Aggiungo i punti al giocatore
-            scoreElement.innerText = 'Punti: ' + ++score;
+                // Aggiungo i punti al giocatore
+                scoreElement.innerText = 'Punti: ' + ++score;
 
-            // Vedo in console quale cella ha cliccato l'utente
-            console.log(i + 1);
+                // Vedo in console quale cella ha cliccato l'utente
+                console.log(i + 1);
+            }
         })
 
     // Inserisco in pagina
