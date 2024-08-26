@@ -71,9 +71,16 @@ body {
     flex-basis: calc(100% / 7);
 }
 
+.cell.bomb {
+    color: white;
+    background-color: red;
+    border: 5px solid rgb(173, 0, 0);
+}
+
 div .cell.easy,
 div .cell.medium,
-div .cell.hard {
+div .cell.hard,
+div .cell.bomb {
     display: flex;
     justify-content: center;
     align-items: center;
